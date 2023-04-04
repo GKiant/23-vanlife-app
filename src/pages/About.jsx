@@ -1,36 +1,33 @@
 import { Link } from "react-router-dom";
-import aboutImg from "../images/about-pic.png";
+import bgImg from "../images/about-pic.png";
 
 const About = () => {
   return (
-    <>
-      <img
-        className="about--img"
-        src={aboutImg}
-        alt="A man sitting on the roof of the van and watching the night sky"
-      />
-      <div className="about--container">
-        <h1 className="about--title">
-          Don’t squeeze in a sedan when you could relax in a van.
-        </h1>
-        <p className="about--description">
+    <div className="about-page-container">
+      <img src={bgImg} className="about-hero-image" />
+      <div className="about-page-content">
+        <h1>Don't squeeze in a sedan when you could relax in a van.</h1>
+        <p>
           Our mission is to enliven your road trip with the perfect travel van
           rental. Our vans are recertified before each trip to ensure your
-          travel plans can go off without a hitch. (Hitch costs extra 😉) <br />
-          <br />
+          travel plans can go off without a hitch. (Hitch costs extra 😉)
+        </p>
+        <p>
           Our team is full of vanlife enthusiasts who know firsthand the magic
           of touring the world on 4 wheels.
         </p>
-        <div className="about--inner_container">
-          <h2 className="about--inner_title">
-            Your destination is waiting. Your van is ready.
-          </h2>
-          <Link to="/vans" className="about--btn btn">
-            Explore our vans
-          </Link>
-        </div>
       </div>
-    </>
+      <div className="about-page-cta">
+        <h2>
+          Your destination is waiting.
+          <br />
+          Your van is ready.
+        </h2>
+        <Link className="link-button" to="/vans">
+          Explore our vans
+        </Link>
+      </div>
+    </div>
   );
 };
 

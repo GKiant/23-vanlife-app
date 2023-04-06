@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const VanDetails = () => {
-  const params = useParams();
   const [vanData, setVanData] = useState(null);
+  const params = useParams();
 
   useEffect(() => {
     try {

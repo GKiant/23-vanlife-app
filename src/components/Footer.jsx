@@ -1,5 +1,5 @@
 const Footer = () => {
-  return <p className="footer--text">Ⓒ 2022 #VANLIFE</p>;
+  return <footer className="footer--text">&#169; 2022 #VANLIFE</footer>;
 };
 
 export default Footer;

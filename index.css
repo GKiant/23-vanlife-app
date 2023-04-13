@@ -104,7 +104,6 @@ footer {
   display: block;
   color: black;
   text-decoration: none;
-  margin-top: 60px;
   margin-left: 26px;
 }
 
@@ -119,7 +118,7 @@ footer {
 /*** HOME PAGE ***/
 .home-container {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-    url("./images/home-bg.png") no-repeat center center;
+    url("./assets/images/home-hero.png") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -292,7 +291,7 @@ i[class*="van-type-"] {
 }
 
 .van-detail-container {
-  padding: 27px;
+  padding-inline: 27px;
 }
 
 .van-detail-container .back-button {
@@ -342,6 +341,7 @@ i[class*="van-type-"] {
 
 .host-nav {
   display: flex;
+  margin-bottom: 30px;
 }
 
 .host-nav a {
@@ -526,9 +526,6 @@ i[class*="van-type-"] {
   border-radius: 6px;
   height: 55px;
   margin-top: 22px;
-  font-size: 15px;
-  font-weight: 600;
   color: white;
   font-family: "Inter", sans-serif;
-  cursor: pointer;
 }

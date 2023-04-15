@@ -531,6 +531,11 @@ i[class*="van-type-"] {
   cursor: pointer;
 }
 
+.login-form > button:disabled {
+  background-color: #aaaaaa;
+  cursor: not-allowed;
+}
+
 .red {
   color: #cc0000;
 }

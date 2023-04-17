@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import loginIcon from "../assets/images/avatar-icon.png";
 
 const Header = () => {
   const activeStyles = {
@@ -11,8 +12,6 @@ const Header = () => {
     localStorage.removeItem("isLoggedIn");
   };
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  console.log(isLoggedIn);
   return (
     <header>
       <Link className="site-logo" to="/">
@@ -38,7 +37,7 @@ const Header = () => {
           Vans
         </NavLink>
         <Link to="login" className="login-link">
-          <img src="../assets/images/avatar-icon.png" className="login-icon" />
+          <img src={loginIcon} className="login-icon" />
         </Link>
         <button onClick={fakeLogOut}>X</button>
       </nav>

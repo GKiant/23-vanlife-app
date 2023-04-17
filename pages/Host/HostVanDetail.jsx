@@ -1,20 +1,22 @@
+import { Suspense } from "react";
 import {
-  useParams,
   Link,
   NavLink,
   Outlet,
   useLoaderData,
+  defer,
+  Await,
 } from "react-router-dom";
-import { getHostVans } from "../../api";
+import { getVan } from "../../api";
 import { requireAuth } from "../../utils";
 
 export const loader = async ({ params, request }) => {
   await requireAuth(request);
-  return getHostVans(params.id);
+  return defer({ vans: getVan(params.id) });
 };
 
 const HostVanDetail = () => {
-  const currentVan = useLoaderData();
+  const dataPromise = useLoaderData();
 
   const activeStyles = {
     fontWeight: "bold",
@@ -22,48 +24,53 @@ const HostVanDetail = () => {
     color: "#161616",
   };
 
-  return (
-    <section>
-      <Link to=".." relative="path" className="back-button">
-        &larr; <span>Back to all vans</span>
-      </Link>
+  const getVanDetailElements = (van) => {
+    return (
+      <section>
+        <Link to=".." relative="path" className="back-button">
+          &larr; <span>Back to all vans</span>
+        </Link>
 
-      <div className="host-van-detail-layout-container">
-        <div className="host-van-detail">
-          <img src={currentVan.imageUrl} />
-          <div className="host-van-detail-info-text">
-            <i className={`van-type van-type-${currentVan.type}`}>
-              {currentVan.type}
-            </i>
-            <h3>{currentVan.name}</h3>
-            <h4>${currentVan.price}/day</h4>
+        <div className="host-van-detail-layout-container">
+          <div className="host-van-detail">
+            <img src={van.imageUrl} />
+            <div className="host-van-detail-info-text">
+              <i className={`van-type van-type-${van.type}`}>{van.type}</i>
+              <h3>{van.name}</h3>
+              <h4>${van.price}/day</h4>
+            </div>
           </div>
-        </div>
 
-        <nav className="host-van-detail-nav">
-          <NavLink
-            to="."
-            end
-            style={({ isActive }) => (isActive ? activeStyles : null)}
-          >
-            Details
-          </NavLink>
-          <NavLink
-            to="pricing"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
-          >
-            Pricing
-          </NavLink>
-          <NavLink
-            to="photos"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
-          >
-            Photos
-          </NavLink>
-        </nav>
-        <Outlet context={{ currentVan }} />
-      </div>
-    </section>
+          <nav className="host-van-detail-nav">
+            <NavLink
+              to="."
+              end
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
+              Details
+            </NavLink>
+            <NavLink
+              to="pricing"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
+              Pricing
+            </NavLink>
+            <NavLink
+              to="photos"
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
+              Photos
+            </NavLink>
+          </nav>
+          <Outlet context={{ van }} />
+        </div>
+      </section>
+    );
+  };
+  return (
+    <Suspense fallback={<h2>Loading details...</h2>}>
+      <Await resolve={dataPromise.vans}>{getVanDetailElements}</Await>
+    </Suspense>
   );
 };
 

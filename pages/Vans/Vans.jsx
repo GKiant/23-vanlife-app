@@ -6,7 +6,7 @@ import {
   Await,
 } from "react-router-dom";
 import { getVans } from "../../api";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 export const loader = () => {
   return defer({ vans: getVans() });
@@ -14,7 +14,6 @@ export const loader = () => {
 
 const Vans = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [error, setError] = useState(null);
   const dataPromise = useLoaderData();
 
   const typeFilter = searchParams.get("type");
@@ -29,10 +28,6 @@ const Vans = () => {
       return prevParams;
     });
   };
-
-  if (error) {
-    return <h1>There was an error: {error.message}</h1>;
-  }
 
   const renderVanElements = (vans) => {
     const displayedVans = typeFilter
@@ -102,7 +97,9 @@ const Vans = () => {
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>
-      <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
+      <Suspense fallback={<h2>Loading vans...</h2>}>
+        <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
+      </Suspense>
     </div>
   );
 };

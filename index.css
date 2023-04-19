@@ -75,6 +75,13 @@ nav {
   display: flex;
 }
 
+nav button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
 main {
   margin-bottom: 84px;
 }
@@ -741,4 +748,50 @@ img.graph {
 .host-reviews .review-star {
   color: #ff8c38;
   margin-right: 5px;
+}
+
+@media (min-width: 741px) {
+  .home-container {
+    height: 660px;
+  }
+
+  .home-container h1 {
+    font-size: 4rem;
+    line-height: 1.2em;
+  }
+
+  .home-container p {
+    font-size: 1.3rem;
+  }
+
+  .home-container a {
+    width: 400px;
+    padding: 15px 90px;
+    font-size: 1.4rem;
+  }
+
+  .van-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .van-detail {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+  }
+
+  .van-detail img {
+    flex-shrink: 2;
+    max-width: 500px;
+  }
+
+  .van-detail--data {
+    display: flex;
+    flex-shrink: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    /* min-width: 574px; */
+    max-width: 574px;
+  }
 }

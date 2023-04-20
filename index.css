@@ -791,7 +791,19 @@ img.graph {
     flex-shrink: 1;
     flex-direction: column;
     justify-content: space-between;
-    /* min-width: 574px; */
     max-width: 574px;
+  }
+
+  .about-page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .about-page-content {
+    padding: 0;
+  }
+
+  .about-page-cta {
+    margin: 0;
   }
 }
